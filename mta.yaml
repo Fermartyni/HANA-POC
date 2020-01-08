@@ -1,3 +1,40 @@
-ID: HANA-POC
+ID: tinyworld
 _schema-version: '2.1'
-version: 0.0.1
+version: 2.1.1
+modules:
+  - name: tinydb
+    type: hdb
+    path: tinydb
+    requires:
+      - name: hdi_db
+  - name: tinyjs
+    type: nodejs
+    path: tinyjs
+    provides:
+      - name: tinyjs_api
+        properties:
+          service_url: '${default-url}'
+    requires:
+      - name: tinydb
+      - name: hdi_db
+      - name: tiny_uaa
+  - name: tinyui
+    type: html5
+    path: tinyui
+    requires:
+      - name: tinyjs_api
+        group: destinations
+        properties:
+          name: tinyjs_be
+          url: '~{service_url}'
+          forwardAuthToken: true
+      - name: tiny_uaa
+resources:
+  - name: hdi_db
+    properties:
+      hdi-container-name: '${service-name}'
+    type: com.sap.xs.hdi-container
+  - name: tiny_uaa
+    type: com.sap.xs.uaa
+    parameters:
+      path: ./xs-security.json

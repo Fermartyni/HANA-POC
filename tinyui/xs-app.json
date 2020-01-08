@@ -1,0 +1,20 @@
+{
+	"welcomeFile": "index.html",
+	"authenticationMethod": "route",
+	"routes": [{
+		"source": "^/euro.xsodata/.*$",
+		"destination": "tinyjs_be",
+	    "authenticationType": "xsuaa",
+	    "csrfProtection": true
+	}, {
+		"source": ".*\\.xsjs",
+		"destination": "tinyjs_be",
+	    "authenticationType": "xsuaa",
+	    "csrfProtection": true
+	}, {
+		"source": "^/(.*)$",
+		"localDir": "resources",
+	    "authenticationType": "xsuaa",
+	    "csrfProtection": true
+	}]
+}
