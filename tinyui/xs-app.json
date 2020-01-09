@@ -4,19 +4,16 @@
 	"routes": [{
 		"source": "^/euro.xsodata/.*$",
 		"destination": "tinyjs_be",
-		"scope": "$XSAPPNAME.view",
 	    "authenticationType": "xsuaa",
 	    "csrfProtection": true
 	}, {
 		"source": ".*\\.xsjs",
 		"destination": "tinyjs_be",
-		"scope": "$XSAPPNAME.create",
 	    "authenticationType": "xsuaa",
 	    "csrfProtection": true
 	}, {
 		"source": "^/(.*)$",
 		"localDir": "resources",
-		"scope": "$XSAPPNAME.view",
 	    "authenticationType": "xsuaa",
 	    "csrfProtection": true
 	}]
